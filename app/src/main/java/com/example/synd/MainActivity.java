@@ -34,7 +34,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
 
         if(view == i1){
-            //startActivity(new Intent(this, ));
+            startActivity(new Intent(this, markZoneActivity.class));
+        }
+        else if(view == i2){
+            startActivity(new Intent(this, qMgmtActivity.class));
+        }
+        else if(view == i3){
+            startActivity(new Intent(this, AutoGenActivity.class));
+        }
+        else if(view == i4){
+            startActivity(new Intent(this, RewardsActivity.class));
+        }
+        else if(view == i5){
+            startActivity(new Intent(this, SOSActivity.class));
         }
 
     }
