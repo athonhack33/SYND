@@ -52,7 +52,7 @@ public class ActivityLogin extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent I = new Intent(ActivityLogin.this, MainActivity.class);
+                Intent I = new Intent(ActivityLogin.this, Login1.class);
                 startActivity(I);
             }
         });
