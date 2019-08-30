@@ -15,8 +15,9 @@
         <activity android:name=".RewardsActivity" />
         <activity android:name=".AutoGenActivity" />
         <activity android:name=".qMgmtActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".markZoneActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ActivityLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
