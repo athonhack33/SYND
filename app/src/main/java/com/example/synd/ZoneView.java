@@ -82,7 +82,7 @@ public class ZoneView extends AppCompatActivity implements View.OnClickListener 
                         soll = zn.getZoneSolution();
                         laaeet = Double.parseDouble(zn.getZoneLat());
                         loongeei =Double.parseDouble(zn.getZoneLong());
-                        Log.d("DEKH",dep);
+                        //Log.d("DEKH",dep);
 
                         t1.setText(dep);
                         t2.setText(prob);
