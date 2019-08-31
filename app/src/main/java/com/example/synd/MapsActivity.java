@@ -2,6 +2,7 @@ package com.example.synd;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -10,6 +11,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +30,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ArrayList<LatLng> latlngs = new ArrayList<>();
     private ArrayList<String> ar1 = new ArrayList<>();
     private ArrayList<String> ar2 = new ArrayList<>();
+    private ArrayList<String> ar3 = new ArrayList<>();
+
     int count =0;
 
     @Override
@@ -41,8 +45,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
-
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -51,10 +53,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-//                String value = dataSnapshot.getValue(String.class);
-               // Log.d(TAG, "Value is: " + value);
 
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                     Zone zn = dataSnapshot1.getValue(Zone.class);
@@ -67,7 +65,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     latlngs.add(sydney);
                     ar1.add(dep);
                     ar2.add(prob);
-
                 }
 
                 for (LatLng point : latlngs) {
@@ -92,6 +89,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(myLoc).title("My Location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLoc,10));
 
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                LatLng ln = marker.getPosition();
+                double latti = ln.latitude;
+                double longgi = ln.longitude;
+                System.out.println("BUNDLEE"+String.valueOf(latti));
 
+                Bundle bundle = new Bundle();
+
+                /*ar3.add(String.valueOf(latti));
+                ar3.add(String.valueOf(longgi));*/
+
+                bundle.putString("LATITUDE",String.valueOf(latti));
+                bundle.putString("LONGITUDE",String.valueOf(longgi));
+
+                Intent intent = new Intent(MapsActivity.this,ZoneView.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                return false;
+            }
+        });
     }
+
+
+
 }
