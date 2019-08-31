@@ -6,27 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".AutoGenActivity">
 
-    <EditText
-        android:id="@+id/edittext"
-        android:layout_width="291dp"
-        android:layout_height="151dp"
-        android:hint="write here"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.339" />
-
     <Button
-        android:id="@+id/create"
-        android:layout_width="248dp"
-        android:layout_height="58dp"
-        android:text="Create PDF"
+        android:id="@+id/btnpdf"
+        android:layout_width="179dp"
+        android:layout_height="93dp"
+        android:text="CREATE PDF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.552"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.751" />
+        app:layout_constraintVertical_bias="0.158" />
+
+    <EditText
+        android:id="@+id/pdftext"
+        android:layout_width="249dp"
+        android:layout_height="129dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Enter your Name!!"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.443" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,14 +1,13 @@
 package com.example.synd;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.pdf.PdfDocument;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,104 +17,90 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
-import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 public class AutoGenActivity extends AppCompatActivity {
 
-    Button btnCreate;
-    EditText editText;
+    Button btnpdf;
+    EditText createpdf;
+    private static final int STORAGE_CODE = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auto_gen);
 
-        btnCreate = findViewById(R.id.create);
-        editText = findViewById(R.id.edittext);
-        btnCreate.setOnClickListener(new View.OnClickListener() {
+        btnpdf = findViewById(R.id.btnpdf);
+        createpdf = findViewById(R.id.pdftext);
+
+        btnpdf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //createPdf(editText.getText().toString());
-                savePDF();
+                if(Build.VERSION.SDK_INT>Build.VERSION_CODES.M){
+                    if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
+                        String[] permissions ={ Manifest.permission.WRITE_EXTERNAL_STORAGE };
+                        requestPermissions(permissions, STORAGE_CODE);
+                    }
+                    else {
+
+                        savePDF();
+
+                    }
+                }
+                else{
+                    savePDF();
+
+                }
             }
         });
-
     }
 
-    private void savePDF() {
+    private void savePDF(){
 
         Document mDoc = new Document();
-       // String mfile = new SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(System.currentTimeMillis());
-        String path = Environment.getExternalStorageDirectory() + "/myfile.pdf";
+        //pdf name
+        String filename = new SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(System.currentTimeMillis());
+        //file path
+        String filepath = Environment.getExternalStorageDirectory() + "/mypdf/" + filename + ".pdf";
 
         try{
-            PdfWriter.getInstance(mDoc, new FileOutputStream(path));
+
+            PdfWriter.getInstance(mDoc, new FileOutputStream(filepath));
+            //open doc
             mDoc.open();
-            String mText = editText.getText().toString();
-            mDoc.add(new Paragraph(mText));
+            //get text
+            String mtext = createpdf.getText().toString();
+            mDoc.addAuthor("CODE_BLOODED");
+
+            mDoc.add(new Paragraph("Issue DD for " + mtext + " ASAP "));
+            //close doc
             mDoc.close();
-            Toast.makeText(this, "dkjahskjha", Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(this, filename + ".pdf\n is saved to\n" + filepath, Toast.LENGTH_SHORT).show();
+
 
         }
-        catch (Exception e){
-            Toast.makeText(this, "noppppppeee", Toast.LENGTH_SHORT).show();
+        catch(Exception e){
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
         }
+
     }
 
-
-
-   /* private void createPdf(String someText){
-
-        // create a new document
-        PdfDocument document = new PdfDocument();
-        // create a page description
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(300, 600, 1).create();
-
-        // start a page
-        PdfDocument.Page page = document.startPage(pageInfo);
-        Canvas canvas = page.getCanvas();
-        Paint paint = new Paint();
-        paint.setColor(Color.RED);
-        canvas.drawCircle(50, 50, 30, paint);
-        paint.setColor(Color.BLACK);
-        canvas.drawText(someText, 80, 50, paint);
-        //canvas.drawt
-        // finish the page
-        document.finishPage(page);
-// draw text on the graphics object of the page
-
-
-        // Create Page 2
-        pageInfo = new PdfDocument.PageInfo.Builder(300, 600, 2).create();
-        page = document.startPage(pageInfo);
-        canvas = page.getCanvas();
-        paint = new Paint();
-        paint.setColor(Color.BLUE);
-        canvas.drawCircle(100, 100, 100, paint);
-        document.finishPage(page);
-
-        // write the document content
-        String directory_path = Environment.getExternalStorageDirectory().getPath() + "/mypdf/";
-        File file = new File(directory_path);
-        if (!file.exists()) {
-            file.mkdirs();
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case STORAGE_CODE: {
+                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    savePDF();
+                }
+                else {
+                    Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+                }
+            }
         }
-        String targetPdf = directory_path+"test-2.pdf";
-        File filePath = new File(targetPdf);
-        try {
-            document.writeTo(new FileOutputStream(filePath));
-            Toast.makeText(this, "Done", Toast.LENGTH_LONG).show();
-        } catch (IOException e) {
-            Log.e("main", "error "+e.toString());
-            Toast.makeText(this, "Something wrong: " + e.toString(),  Toast.LENGTH_LONG).show();
-        }
-        // close the document
-        document.close();
-*/
+    }
 
 }
