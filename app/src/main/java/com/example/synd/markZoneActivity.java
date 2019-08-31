@@ -246,7 +246,6 @@ public class markZoneActivity extends AppCompatActivity implements View.OnClickL
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String text = adapterView.getItemAtPosition(i).toString();
         ZoneTitle = text;
-
     }
 
     @Override
