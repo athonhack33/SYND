@@ -4,10 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -79,7 +82,7 @@ public class AutoGenActivity extends AppCompatActivity {
             mDoc.close();
 
             Toast.makeText(this, filename + ".pdf\n is saved to\n" + filepath, Toast.LENGTH_SHORT).show();
-
+            sendEmail();
 
         }
         catch(Exception e){
@@ -100,6 +103,28 @@ public class AutoGenActivity extends AppCompatActivity {
                     Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
                 }
             }
+        }
+    }
+
+    void sendEmail(){
+        Log.i("Send email", "");
+        String[] TO = {"athonhack33@gmail.com"};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        // emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Adding attachment pending! Email message goes here");
+
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+            Toast.makeText(this, "There is email client installed.", Toast.LENGTH_SHORT).show();
+
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
     }
 
