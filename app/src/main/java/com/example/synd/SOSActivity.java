@@ -36,7 +36,7 @@ public class SOSActivity extends AppCompatActivity implements View.OnClickListen
         phone_Number = findViewById(R.id.mblTxt);
         message = findViewById(R.id.msgTxt);
 
-        /*send.setOnClickListener(new View.OnClickListener() {
+        send.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.P)
             @Override
             public void onClick(View view) {
@@ -56,8 +56,7 @@ public class SOSActivity extends AppCompatActivity implements View.OnClickListen
                         // for Activity#requestPermissions for more details.
                         return;
                     }
-//                    sms.sendTextMessage(phone_Num, null, send_msg, null, null);
-                    sms.sendTextMessageWithoutPersisting(phone_Num, null, send_msg, null, null); // adding number and text
+                      sms.sendTextMessage(phone_Num, null, send_msg, null, null);
                 } catch (Exception e) {
                     Toast.makeText(SOSActivity.this, "SMS not sent", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
@@ -65,29 +64,6 @@ public class SOSActivity extends AppCompatActivity implements View.OnClickListen
 
             }
         });
-        */
-    }
-
-    public void sms(View v)
-    {
-        Log.i("Sending SMS","");
-        Intent I =new Intent(Intent.ACTION_VIEW);
-
-        I.setData(Uri.parse("smsto:"));
-        I.setType("vnd.android-dir/mms-sms");
-        I.putExtra("address", phone_Num);
-        I.putExtra("sms_body","Enter your Sms here..");
-
-        try
-        {
-            startActivity(I);
-            finish();
-            Log.i("Sms Send","");
-        }
-        catch(Exception e)
-        {
-            Toast.makeText(SOSActivity.this,"Sms not send",Toast.LENGTH_LONG).show();
-        }
     }
 
     @Override
