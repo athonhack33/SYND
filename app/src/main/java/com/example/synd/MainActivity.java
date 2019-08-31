@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     public Button btnLogOut;
-    ImageView i1,i2,i3,i4,i5;
+    ImageView i1,i2,i3,i4,i5,i6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         i2 = findViewById(R.id.queueMgt);
         i3 = findViewById(R.id.autogen);
         i4 = findViewById(R.id.rewards);
-        i5 = findViewById(R.id.SOS);
+        i5 = findViewById(R.id.Map);
+        i6 = findViewById(R.id.SOS);
         btnLogOut = findViewById(R.id.btnLogOut);
 
         i1.setOnClickListener(this);
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         i3.setOnClickListener(this);
         i4.setOnClickListener(this);
         i5.setOnClickListener(this);
+        i6.setOnClickListener(this);
 
 
         btnLogOut.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +67,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if(view == i5){
             startActivity(new Intent(this, MapsActivity.class));
+        }
+        else if(view == i6){
+            startActivity(new Intent(this, SOSActivity.class));
         }
 
     }

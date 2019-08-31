@@ -2,6 +2,7 @@ package com.example.synd;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -20,11 +21,12 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-public class SOSActivity extends AppCompatActivity implements View.OnClickListener {
+public class SOSActivity extends AppCompatActivity {
 
-    public Button send;
-    EditText phone_Number, message;
-    String phone_Num, send_msg;
+    private EditText txtMobile;
+    private EditText txtMessage;
+    private Button btnSms;
+    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 1;
 
 
     @Override
@@ -32,42 +34,39 @@ public class SOSActivity extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sos);
 
-        send = (Button) findViewById(R.id.btnSend);
-        phone_Number = findViewById(R.id.mblTxt);
-        message = findViewById(R.id.msgTxt);
+        txtMobile = (EditText)findViewById(R.id.mobno);
 
-        send.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.P)
+        txtMessage = (EditText)findViewById(R.id.msg);
+
+        btnSms = (Button)findViewById(R.id.btnSend);
+
+        btnSms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                phone_Num = phone_Number.getText().toString();
-                send_msg = message.getText().toString();
-
-                try {
-                    SmsManager sms = SmsManager.getDefault(); // using android SmsManager
-                    if (checkSelfPermission(Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
-                        // TODO: Consider calling
-                        //    Activity#requestPermissions
-                        // here to request the missing permissions, and then overriding
-                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                        //                                          int[] grantResults)
-                        // to handle the case where the user grants the permission. See the documentation
-                        // for Activity#requestPermissions for more details.
-                        return;
-                    }
-                      sms.sendTextMessage(phone_Num, null, send_msg, null, null);
-                } catch (Exception e) {
-                    Toast.makeText(SOSActivity.this, "SMS not sent", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
-
+                smsSendMessage();
             }
         });
-    }
 
-    @Override
-    public void onClick(View view) {
 
     }
+
+    public void smsSendMessage(){
+        String destinationAddress = txtMobile.getText().toString();
+        String smsMessage = txtMessage.getText().toString();
+        // Set the service center address if needed, otherwise null.
+        String scAddress = null;
+        // Set pending intents to broadcast
+        // when message sent and when delivered, or set to null.
+        PendingIntent sentIntent = null, deliveryIntent = null;
+        // Use SmsManager.
+        SmsManager smsManager = SmsManager.getDefault();
+        smsManager.sendTextMessage
+                (destinationAddress, scAddress, smsMessage,
+                        sentIntent, deliveryIntent);
+    }
+
+
 }
+
+//Reference: https://google-developer-training.github.io/android-developer-phone-sms-course/Lesson%202/2_p_sending_sms_messages.html
+
