@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -69,7 +70,7 @@ public class markZoneActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_mark_zone);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Zones");
-        databaseReference1 = FirebaseDatabase.getInstance().getReference("User_Zones");
+        //databaseReference1 = FirebaseDatabase.getInstance().getReference("User_Zones");
         firebaseStorage = FirebaseStorage.getInstance();
         auth = FirebaseAuth.getInstance();
         uid = auth.getCurrentUser().getUid();
@@ -133,25 +134,44 @@ public class markZoneActivity extends AppCompatActivity implements View.OnClickL
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     mProgress.dismiss();
-                    zoneImageURI = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-                    Log.d("imageUri", zoneImageURI);
-                    String url = zoneImageURI;
-                    System.out.println("The url passed in addnames is   :" + url);
+                    taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            // Got the download URL for 'users/me/profile.png' in uri
+                            zoneImageURI = uri.toString();
+                            System.out.println(uri.toString());
+                            Log.d("ZONE",zoneImageURI);
+                            String url = zoneImageURI;
+                            System.out.println("The url passed in addnames is   :" + url);
 
-                    final String ZoneLat = "Lat";
-                    final String ZoneLong = "Logg";
-                    String ZoneKey = databaseReference.push().getKey();
-                    String ZoneKey1 = databaseReference1.push().getKey();
-                    Zone zn = new Zone(auth.getUid()+ new Random().nextInt(1000), ZoneTitle, ZoneData, ZoneSolution,
-                            ZoneLat, ZoneLong,0,0 ,0, zoneImageURI);
-                    databaseReference.child(ZoneKey).setValue(zn);
-                    HashMap<String,String> hm = new HashMap<String, String>();
-                    hm.put(ZoneKey,uid);
-                    databaseReference1.child(ZoneKey1).setValue(hm);
+                            final String ZoneLat = "Lat";
+                            final String ZoneLong = "Logg";
+                            String ZoneKey = databaseReference.push().getKey();
 
-                    Toast.makeText(markZoneActivity.this, " All The Details Added Successfully", Toast.LENGTH_SHORT);
-                    startActivity(new Intent(markZoneActivity.this,MainActivity.class));
-                    finish();
+                            Zone zn = new Zone(auth.getUid()+ new Random().nextInt(1000), ZoneTitle, ZoneData, ZoneSolution,
+                                    ZoneLat, ZoneLong,0,0 ,0, zoneImageURI);
+                            databaseReference.child(ZoneKey).setValue(zn);
+                            addData();
+
+
+
+
+
+
+                            //;setValue(hm);
+
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            Log.d("imageUri",exception.toString());
+                            // Handle any errors
+                        }
+                    });
+                    //Log.d("ZONE",zoneImageURI);
+                    // Log.d("imageUri", zoneImageURI);
+
 
                 }
 
@@ -164,6 +184,23 @@ public class markZoneActivity extends AppCompatActivity implements View.OnClickL
                 startActivityForResult(intent, CAMERA_REQUEST_CODE);
             }
         }
+    }
+
+    private void addData() {
+        databaseReference1 = FirebaseDatabase.getInstance().getReference("User_Zones");
+        String ZoneKey1 = databaseReference1.push().getKey();
+        User_Zones un = new User_Zones(uid,ZoneKey1,zoneImageURI);
+        databaseReference1.child(ZoneKey1).setValue(un);
+
+        //HashMap<String,String,String> hm = new HashMap<String, String>();
+        //Log.d("HM",hm.toString());
+        //hm.put(ZoneKey1,uid,zoneImageURI);
+        //databaseReference1.child(ZoneKey1).child(hm).setValue();
+
+        Toast.makeText(markZoneActivity.this, " All The Details Added Successfully", Toast.LENGTH_SHORT);
+        startActivity(new Intent(markZoneActivity.this,MainActivity.class));
+        finish();
+
     }
 
     @Override
