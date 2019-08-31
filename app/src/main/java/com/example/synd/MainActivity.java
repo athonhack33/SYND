@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(this, RewardsActivity.class));
         }
         else if(view == i5){
-            startActivity(new Intent(this, SOSActivity.class));
+            startActivity(new Intent(this, MapsActivity.class));
         }
 
     }

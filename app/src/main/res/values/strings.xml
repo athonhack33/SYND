@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">SYND</string>
 
+    <string name="title_activity_maps">Map</string>
     <string-array name="departments">
         <item>Loan Department</item>
         <item>Lobby</item>
