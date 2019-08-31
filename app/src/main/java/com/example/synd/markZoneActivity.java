@@ -2,12 +2,22 @@ package com.example.synd;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -20,6 +30,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -33,15 +44,18 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 public class markZoneActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
-    ImageView i1,i2;
+    ImageView i1, i2;
     Button bt1;
-    EditText et1,et2;
+    EditText et1, et2;
     Spinner sp;
 
     private Uri uri;
@@ -59,11 +73,12 @@ public class markZoneActivity extends AppCompatActivity implements View.OnClickL
     Bitmap imageBitmap;
     byte[] dataBAOS;
     int rresultCode;
-    DatabaseReference databaseReference,databaseReference1;
+    DatabaseReference databaseReference, databaseReference1;
     public String zoneImageURI = null;
     String ZoneTitle;
     String uid;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,9 +97,10 @@ public class markZoneActivity extends AppCompatActivity implements View.OnClickL
         et2 = findViewById(R.id.editText_solution);
         sp = findViewById(R.id.spinner_markzone);
 
+
         mProgress = new ProgressDialog(this);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.departments,android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.departments, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp.setAdapter(adapter);
         sp.setOnItemSelectedListener(this);
@@ -93,8 +109,10 @@ public class markZoneActivity extends AppCompatActivity implements View.OnClickL
         i1.setOnClickListener(this);
     }
 
+
     @Override
     public void onClick(View view) {
+
         if(view==bt1){
             final String ZoneData = et1.getText().toString().trim();
             final String ZoneSolution = et2.getText().toString().trim();
@@ -233,8 +251,6 @@ public class markZoneActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
-
 
     }
 }

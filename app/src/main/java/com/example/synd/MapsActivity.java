@@ -2,9 +2,14 @@ package com.example.synd;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -21,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,LocationListener {
 
     private GoogleMap mMap;
     DatabaseReference myRef;
@@ -31,8 +36,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ArrayList<String> ar1 = new ArrayList<>();
     private ArrayList<String> ar2 = new ArrayList<>();
     private ArrayList<String> ar3 = new ArrayList<>();
-
+    LocationManager locationManager;
     int count =0;
+    private double latPK;
+    private double longPK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +51,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        getLocation();
+
+    }
+    void getLocation() {
+        try {
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 5, (LocationListener) this);
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        double lat = location.getLatitude();
+        double longi = location.getLongitude();
+        Toast.makeText(this, "Latitude: "+ lat+ "\n Longitude: "+longi ,Toast.LENGTH_SHORT).show();
+
+        latPK = lat;
+        longPK = longi;
+        Log.d("LAT",Double.toString(latPK));
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        Toast.makeText(this, "Please Enable GPS and Internet", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
     }
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -85,7 +128,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
         // Add a marker in Sydney and move the camera
-        LatLng myLoc = new LatLng(19.2389803,72.8557517);
+        LatLng myLoc = new LatLng(latPK,longPK);
         mMap.addMarker(new MarkerOptions().position(myLoc).title("My Location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLoc,10));
 
