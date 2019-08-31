@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().hide(); // hide the title bar
+
         i1 = findViewById(R.id.markZone);
         i2 = findViewById(R.id.queueMgt);
         i3 = findViewById(R.id.autogen);
