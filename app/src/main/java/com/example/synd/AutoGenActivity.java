@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -106,6 +107,7 @@ public class AutoGenActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("IntentReset")
     void sendEmail(){
         Log.i("Send email", "");
         String[] TO = {"athonhack33@gmail.com"};

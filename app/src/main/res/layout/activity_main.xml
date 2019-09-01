@@ -12,12 +12,15 @@
         android:layout_height="24dp"
         android:text="Map"
         android:textAlignment="center"
+        android:textColor="#020202"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.817"
+        app:layout_constraintHorizontal_bias="0.237"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.685" />
+        app:layout_constraintVertical_bias="0.676" />
 
     <TextView
         android:id="@+id/textView"
@@ -25,12 +28,15 @@
         android:layout_height="24dp"
         android:text="SOS"
         android:textAlignment="center"
+        android:textColor="#0A0000"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintHorizontal_bias="0.801"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.674" />
+        app:layout_constraintVertical_bias="0.676" />
 
     <TextView
         android:id="@+id/textView9"
@@ -38,28 +44,32 @@
         android:layout_height="24dp"
         android:text="Rewards"
         android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.817"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.411" />
 
     <ImageView
         android:id="@+id/markZone"
-        android:layout_width="130dp"
-        android:layout_height="151dp"
+        android:layout_width="137dp"
+        android:layout_height="140dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.224"
+        app:layout_constraintHorizontal_bias="0.204"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.21"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:layout_constraintVertical_bias="0.206"
+        app:srcCompat="@mipmap/ic_launcher"
+        tools:srcCompat="@drawable/mark_zone" />
 
     <ImageView
         android:id="@+id/autogen"
@@ -75,7 +85,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.543"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:srcCompat="@mipmap/ic_launcher"
+        tools:srcCompat="@drawable/doc_gen" />
 
     <TextView
         android:id="@+id/textView8"
@@ -83,6 +94,9 @@
         android:layout_height="24dp"
         android:text="AutoGen"
         android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.237"
@@ -92,8 +106,8 @@
 
     <ImageView
         android:id="@+id/rewards"
-        android:layout_width="130dp"
-        android:layout_height="151dp"
+        android:layout_width="121dp"
+        android:layout_height="140dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -104,7 +118,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.543"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:srcCompat="@mipmap/ic_launcher"
+        tools:srcCompat="@drawable/rewards" />
 
 
     <ImageView
@@ -117,11 +132,12 @@
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/queueMgt"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.236"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.877"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:layout_constraintVertical_bias="0.889"
+        app:srcCompat="@mipmap/ic_launcher"
+        tools:srcCompat="@drawable/map" />
 
     <ImageView
         android:id="@+id/SOS"
@@ -133,20 +149,23 @@
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/queueMgt"
-        app:layout_constraintHorizontal_bias="0.265"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.877"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:layout_constraintVertical_bias="0.889"
+        app:srcCompat="@mipmap/ic_launcher"
+        tools:srcCompat="@drawable/sos" />
 
     <Button
         android:id="@+id/btnLogOut"
-        android:layout_width="410dp"
-        android:layout_height="55dp"
+        android:layout_width="121dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="156dp"
         android:paddingTop="@dimen/activity_horizontal_margin"
         android:paddingBottom="@dimen/activity_horizontal_margin"
         android:text="Logout"
         android:textColor="@android:color/black"
+        android:background=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -167,7 +186,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.21"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:srcCompat="@mipmap/ic_launcher"
+        tools:srcCompat="@drawable/queue" />
 
     <TextView
         android:id="@+id/textView6"
@@ -175,6 +195,9 @@
         android:layout_height="24dp"
         android:text="Mark Zone"
         android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.237"
@@ -188,11 +211,14 @@
         android:layout_height="43dp"
         android:text="Queue Management"
         android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.814"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.128" />
+        app:layout_constraintVertical_bias="0.114" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

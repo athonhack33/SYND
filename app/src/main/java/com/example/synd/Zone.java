@@ -1,8 +1,8 @@
 package com.example.synd;
 
 public class Zone {
-    String zoneID , zoneTitle , zoneData , zoneSolution , zoneLat , zoneLong , zoneImage ;
-    long zoneStatusUpVote, zoneStatusDownVote, solvedCount;
+    private String zoneID , zoneTitle , zoneData , zoneSolution , zoneLat , zoneLong , zoneImage ;
+    private long zoneStatusUpVote, zoneStatusDownVote, solvedCount;
     public Zone() {
     }
 
