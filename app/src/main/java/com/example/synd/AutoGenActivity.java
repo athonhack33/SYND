@@ -93,6 +93,8 @@ public class AutoGenActivity extends AppCompatActivity {
 
             Toast.makeText(this, filename + ".pdf\n is saved to\n" + filepath, Toast.LENGTH_LONG).show();
 
+            sendEmail();
+
 
 
         }
@@ -117,6 +119,47 @@ public class AutoGenActivity extends AppCompatActivity {
         }
     }
 
+
+    void sendEmail(String filename){
+        Log.i("Send email", "");
+        String[] TO = {"athonhack33@gmail.com"};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("vnd.android.cursor.dir/email");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        // emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
+
+        File root = Environment.getExternalStorageDirectory();
+        String p = root.getAbsolutePath();
+        Toast.makeText(this, "path." + p, Toast.LENGTH_SHORT).show();
+
+        String pathToMyAttachedFile = root + "/mypdf/" + filename + ".pdf";
+
+        Toast.makeText(this, "pathhhh." + pathToMyAttachedFile, Toast.LENGTH_SHORT).show();
+
+        /*File file = new File(root + "/mypdf/" + filename + ".pdf");
+
+
+        if (file.exists()) {
+            Toast.makeText(this, "Therheyyyytalled.", Toast.LENGTH_SHORT).show();
+
+            return;
+        }
+
+        Uri uri = Uri.fromFile(file);*/
+        emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + pathToMyAttachedFile));
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+               Toast.makeText(this, "There is email client installed.", Toast.LENGTH_SHORT).show();
+
+        } catch (android.content.ActivityNotFoundException ex) {
+               Toast.makeText(this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 
 }
