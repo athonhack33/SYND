@@ -21,6 +21,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -28,7 +29,7 @@ import java.util.Locale;
 public class AutoGenActivity extends AppCompatActivity {
 
     Button btnpdf;
-    EditText createpdf;
+    EditText createpdf, amt;
     private static final int STORAGE_CODE = 1000;
 
     @Override
@@ -38,6 +39,7 @@ public class AutoGenActivity extends AppCompatActivity {
 
         btnpdf = findViewById(R.id.btnpdf);
         createpdf = findViewById(R.id.pdftext);
+        amt = findViewById(R.id.editText);
 
         btnpdf.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +63,7 @@ public class AutoGenActivity extends AppCompatActivity {
         });
     }
 
-    private void savePDF(){
+    public void savePDF(){
 
         Document mDoc = new Document();
         //pdf name
@@ -76,14 +78,22 @@ public class AutoGenActivity extends AppCompatActivity {
             mDoc.open();
             //get text
             String mtext = createpdf.getText().toString();
-            mDoc.addAuthor("CODE_BLOODED");
+            String mamt = amt.getText().toString();
 
-            mDoc.add(new Paragraph("Issue DD for " + mtext + " ASAP "));
+            mDoc.addAuthor("CODE_BLOODED");
+            mDoc.add(new Paragraph("Respected Sir, \n\t\t\t\t Subject: Application for Demand Draft."));
+
+            mDoc.add(new Paragraph("\nKindly issue  a Demand draft of Rs." + mamt + " in favour of " + mtext + " college payable at towards payment of my semester fees."));
+            mDoc.add(new Paragraph("\nThanking you, \n<Customer Name>."));
+
+
+
             //close doc
             mDoc.close();
 
-            Toast.makeText(this, filename + ".pdf\n is saved to\n" + filepath, Toast.LENGTH_SHORT).show();
-            sendEmail();
+            Toast.makeText(this, filename + ".pdf\n is saved to\n" + filepath, Toast.LENGTH_LONG).show();
+
+
 
         }
         catch(Exception e){
@@ -107,27 +117,6 @@ public class AutoGenActivity extends AppCompatActivity {
         }
     }
 
-    @SuppressLint("IntentReset")
-    void sendEmail(){
-        Log.i("Send email", "");
-        String[] TO = {"athonhack33@gmail.com"};
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-        // emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Adding attachment pending! Email message goes here");
 
-
-        try {
-            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-            finish();
-            Toast.makeText(this, "There is email client installed.", Toast.LENGTH_SHORT).show();
-
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
-        }
-    }
 
 }

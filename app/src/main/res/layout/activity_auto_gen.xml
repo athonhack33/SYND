@@ -8,19 +8,20 @@
 
     <Button
         android:id="@+id/btnpdf"
-        android:layout_width="179dp"
-        android:layout_height="93dp"
-        android:text="CREATE PDF"
+        android:layout_width="134dp"
+        android:layout_height="68dp"
+        android:text="PDF for Demand Draft"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.158" />
+        app:layout_constraintVertical_bias="0.702" />
 
     <EditText
         android:id="@+id/pdftext"
-        android:layout_width="249dp"
-        android:layout_height="129dp"
+        android:layout_width="268dp"
+        android:layout_height="63dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Enter your Name!!"
@@ -29,6 +30,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.443" />
+        app:layout_constraintVertical_bias="0.367" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="271dp"
+        android:layout_height="59dp"
+        android:ems="10"
+        android:hint="Enter amount"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
