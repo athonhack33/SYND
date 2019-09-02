@@ -11,27 +11,27 @@
 
         <ImageView
             android:id="@+id/imageView1_markzone"
-            android:layout_width="155dp"
-            android:layout_height="123dp"
-            android:src="@drawable/back4"
+            android:layout_width="111dp"
+            android:layout_height="72dp"
+            android:src="@drawable/ic_camera_alt_black_24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.16"
+            app:layout_constraintHorizontal_bias="0.196"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.771" />
+            app:layout_constraintVertical_bias="0.758" />
 
-        <ImageView
+    <ImageView
         android:id="@+id/imageView2_markzone"
-        android:layout_width="195dp"
-        android:layout_height="138dp"
-        android:src="@drawable/back4"
+        android:layout_width="163dp"
+        android:layout_height="107dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.851"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.79" />
+        app:layout_constraintVertical_bias="0.795" />
 
     <Spinner
         android:id="@+id/spinner_markzone"
@@ -74,7 +74,8 @@
         android:id="@+id/button_markzone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="POST IT"
+        android:background="@color/orange"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

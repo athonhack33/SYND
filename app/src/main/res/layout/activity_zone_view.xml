@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imageView_zoneview"
-        android:layout_width="329dp"
-        android:layout_height="279dp"
+        android:layout_width="301dp"
+        android:layout_height="210dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
