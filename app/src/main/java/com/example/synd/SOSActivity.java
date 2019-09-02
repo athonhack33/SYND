@@ -55,7 +55,6 @@ public class SOSActivity extends AppCompatActivity {
         try {
             startActivity(Intent.createChooser(emailIntent, "Send mail..."));
             finish();
-            Toast.makeText(this, "There is email client installed.", Toast.LENGTH_SHORT).show();
 
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
