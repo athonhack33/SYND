@@ -5,28 +5,21 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.telephony.SmsManager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 
 public class SOSActivity extends AppCompatActivity {
 
-    private EditText txtMobile;
-    private EditText txtMessage;
-    private Button btnSms;
-    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 1;
+    ImageView btn;
 
 
     @Override
@@ -34,39 +27,39 @@ public class SOSActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sos);
 
-        txtMobile = (EditText)findViewById(R.id.mobno);
+        btn = findViewById(R.id.sosbtn);
 
-        txtMessage = (EditText)findViewById(R.id.msg);
-
-        btnSms = (Button)findViewById(R.id.btnSend);
-
-        btnSms.setOnClickListener(new View.OnClickListener() {
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                smsSendMessage();
+                sendNotification();
             }
         });
 
-
     }
 
-    public void smsSendMessage(){
-        String destinationAddress = txtMobile.getText().toString();
-        String smsMessage = txtMessage.getText().toString();
-        // Set the service center address if needed, otherwise null.
-        String scAddress = null;
-        // Set pending intents to broadcast
-        // when message sent and when delivered, or set to null.
-        PendingIntent sentIntent = null, deliveryIntent = null;
-        // Use SmsManager.
-        SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage
-                (destinationAddress, scAddress, smsMessage,
-                        sentIntent, deliveryIntent);
-    }
+    public void sendNotification(){
 
+
+        Log.i("Send email", "");
+        String[] TO = {"athonhack33@gmail.com"};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        // emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Arrival Notification. ");
+        emailIntent.putExtra(Intent.EXTRA_TEXT,  "I have arrived at your branch! ");
+
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+            Toast.makeText(this, "There is email client installed.", Toast.LENGTH_SHORT).show();
+
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 }
-
-//Reference: https://google-developer-training.github.io/android-developer-phone-sms-course/Lesson%202/2_p_sending_sms_messages.html
-

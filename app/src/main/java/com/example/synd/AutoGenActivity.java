@@ -120,7 +120,7 @@ public class AutoGenActivity extends AppCompatActivity {
     }
 
 
-    void sendEmail(String filename){
+    void sendEmail(){
         Log.i("Send email", "");
         String[] TO = {"athonhack33@gmail.com"};
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
@@ -131,25 +131,6 @@ public class AutoGenActivity extends AppCompatActivity {
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
         emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
 
-        File root = Environment.getExternalStorageDirectory();
-        String p = root.getAbsolutePath();
-        Toast.makeText(this, "path." + p, Toast.LENGTH_SHORT).show();
-
-        String pathToMyAttachedFile = root + "/mypdf/" + filename + ".pdf";
-
-        Toast.makeText(this, "pathhhh." + pathToMyAttachedFile, Toast.LENGTH_SHORT).show();
-
-        /*File file = new File(root + "/mypdf/" + filename + ".pdf");
-
-
-        if (file.exists()) {
-            Toast.makeText(this, "Therheyyyytalled.", Toast.LENGTH_SHORT).show();
-
-            return;
-        }
-
-        Uri uri = Uri.fromFile(file);*/
-        emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + pathToMyAttachedFile));
 
         try {
             startActivity(Intent.createChooser(emailIntent, "Send mail..."));
