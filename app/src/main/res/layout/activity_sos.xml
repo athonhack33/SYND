@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/sos" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/congo"
         android:layout_width="233dp"
         android:layout_height="61dp"
         android:text="Notify Staff!"

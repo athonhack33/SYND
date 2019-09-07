@@ -1,6 +1,7 @@
 package com.example.synd;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,20 +12,26 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class BookingActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
 
-    Button btnbk;
+    Button btnbk, btnhm;
     Spinner spindept, spinslot;
     EditText comm;
+    CardView cd;
+
+    TextView tvdt,tvtim,tvdep,tvco;
 
     DatabaseReference df;
 
@@ -40,6 +47,14 @@ public class BookingActivity extends AppCompatActivity implements AdapterView.On
         spindept = findViewById(R.id.spinnerdept);
         spinslot = findViewById(R.id.spinnerslot);
         comm = findViewById(R.id.comment);
+
+        //cardview
+       tvdt = findViewById(R.id.tv_date);
+        tvtim = findViewById(R.id.tv_time);
+        tvdep = findViewById(R.id.tv_dept);
+        tvco = findViewById(R.id.tv_comments);
+        cd = findViewById(R.id.cardViewwww);
+        btnhm = findViewById(R.id.btnhomeee);
 
         //spindept
         spindept.setOnItemSelectedListener(this);
@@ -62,7 +77,6 @@ public class BookingActivity extends AppCompatActivity implements AdapterView.On
         spinslot.setAdapter(dataAdapters);
 
 
-
         btnbk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,11 +93,29 @@ public class BookingActivity extends AppCompatActivity implements AdapterView.On
 
         if(!TextUtils.isEmpty(com)){
 
-            String id = df.push().getKey();
+          /*  String id = df.push().getKey();
             cslot c = new cslot(id, deptt,slott, com);
             df.child(id).setValue(c);
-            Toast.makeText(this, "Slot added", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Slot added", Toast.LENGTH_SHORT).show(); */
+            cd.setVisibility(View.VISIBLE);
+            btnbk.setVisibility(View.INVISIBLE);
 
+            //to be added
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Calendar cal = Calendar.getInstance();
+            String date = sdf.format(cal.getTime());
+            tvdt.setText(date);
+
+            tvtim.setText(slott);
+            tvdep.setText(deptt);
+            tvco.setText(com);
+
+            btnhm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(BookingActivity.this, MainActivity.class));
+                }
+            });
         }
         else{
             Toast.makeText(this, "Comment is required!", Toast.LENGTH_SHORT).show();

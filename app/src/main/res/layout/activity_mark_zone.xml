@@ -111,7 +111,7 @@
 
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/commentsss"
         android:layout_width="203dp"
         android:layout_height="32dp"
         android:text="Click a picture!"
