@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    public Button btnLogOut;
+    public ImageView btnLogOut;
     ImageView i1,i2,i3,i4,i5,i6;
 
     @Override

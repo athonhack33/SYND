@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".BookingActivity"></activity>
         <activity android:name=".ZoneView" />
         <!--
          The API key for Google Maps-based APIs is defined as a string resource.

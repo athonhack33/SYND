@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.itextpdf.text.Document;
@@ -28,7 +29,7 @@ import java.util.Locale;
 
 public class AutoGenActivity extends AppCompatActivity {
 
-    Button btnpdf;
+    ImageView btnpdf;
     EditText createpdf, amt;
     private static final int STORAGE_CODE = 1000;
 
