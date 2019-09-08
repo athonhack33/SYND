@@ -2,6 +2,7 @@ package com.example.synd;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -11,16 +12,20 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -30,8 +35,11 @@ import java.util.Locale;
 public class AutoGenActivity extends AppCompatActivity {
 
     ImageView btnpdf;
+    CardView cvpdf;
+    TextView locaton;
     EditText createpdf, amt;
     private static final int STORAGE_CODE = 1000;
+    private static int SPLASH_TIME_OUT = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +49,9 @@ public class AutoGenActivity extends AppCompatActivity {
         btnpdf = findViewById(R.id.btnpdf);
         createpdf = findViewById(R.id.pdftext);
         amt = findViewById(R.id.editText);
+
+        cvpdf = findViewById(R.id.carrddview);
+        locaton = findViewById(R.id.pdfloc);
 
         btnpdf.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,11 +103,16 @@ public class AutoGenActivity extends AppCompatActivity {
             //close doc
             mDoc.close();
 
-            Toast.makeText(this, filename + ".pdf\n is saved to\n" + filepath, Toast.LENGTH_LONG).show();
+            cvpdf.setVisibility(View.VISIBLE);
+            locaton.setText(filename + ".pdf\n is saved to\n" + filepath);
 
-            sendEmail();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    sendEmail();
 
-
+                }
+            }, SPLASH_TIME_OUT);
 
         }
         catch(Exception e){
