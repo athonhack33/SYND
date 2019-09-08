@@ -109,7 +109,6 @@ public class markZoneActivity extends AppCompatActivity implements View.OnClickL
         i1.setOnClickListener(this);
     }
 
-
     @Override
     public void onClick(View view) {
 
@@ -171,11 +170,6 @@ public class markZoneActivity extends AppCompatActivity implements View.OnClickL
                             databaseReference.child(ZoneKey).setValue(zn);
                             addData();
 
-
-
-
-
-
                             //;setValue(hm);
 
 
@@ -189,7 +183,6 @@ public class markZoneActivity extends AppCompatActivity implements View.OnClickL
                     });
                     //Log.d("ZONE",zoneImageURI);
                     // Log.d("imageUri", zoneImageURI);
-
 
                 }
 
