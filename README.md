@@ -10,3 +10,15 @@ speed up the process.
 
 Download APK from this link:
 https://drive.google.com/drive/folders/1ULz5gDn_pUNanO7bIBr6e3Ge3eTwon_U?usp=sharing
+
+Artificial Intelligence Prototype Link : 
+https://drive.google.com/drive/folders/119R8bVBAjXOSnQxV_UZGOZzbKzTqncuO?usp=sharing
+
+Unit Testing Link : 
+https://drive.google.com/drive/folders/1lWhoC7aa0CDrUc4FIrvLvOpyQs1j4Kmj?usp=sharing
+
+Website Link : (Open index.html)
+https://drive.google.com/drive/folders/1KXZ6U7p-853bEBVqhE8BIwRFVWyxfuYl?usp=sharing
+
+Database Proof Screenshots : 
+https://drive.google.com/drive/folders/1xwRV4ip6tpAHiHj5xu2EVNKQ1Wdt6PRN?usp=sharing
