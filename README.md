@@ -1,4 +1,4 @@
-# SYND
+# SYND_Patch!
 
 Synd_Patch project aims at solving various real-time problems faced by the customers and bank
 staff on a daily basis by using combinations of latest technologies like Artificial Intelligence,
