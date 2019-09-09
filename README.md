@@ -13,7 +13,7 @@ speed up the process.
 #### Download APK from this link:
 https://drive.google.com/drive/folders/1ULz5gDn_pUNanO7bIBr6e3Ge3eTwon_U?usp=sharing
 
-#### Artificial Intelligence Prototype Link : 
+#### Artificial Intelligence (Crowd Detection uisng CCTv) Prototype Link : 
 https://drive.google.com/drive/folders/119R8bVBAjXOSnQxV_UZGOZzbKzTqncuO?usp=sharing
 
 #### Unit Testing Link : 
