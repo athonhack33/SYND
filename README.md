@@ -50,5 +50,5 @@ The users can notify about their presence and using geofence technology we can u
 ### Suggestions : 
 Any user connected to the bank anyway can drop his suggestions and problems in this forum. This allows the other participants to upvote or downvote and give solutions according to their experience and knowledge.This will help in the overall development of the bank.
 
-### Summary : 
+## Summary : 
 SyndPatch project consists of various modules patched together into the existing application. It focuses on various real time problems faced by bank users and tries and solves them in the best possible way. A platform that gives access to scattered and sporadically distributed information about various problems related to the bank services. A classified system that builds a bridge between root source of waste and daily customers and bank staff for retreating or reusing of waste and cleaning dirty/stinky areas in a sustainable manner.
